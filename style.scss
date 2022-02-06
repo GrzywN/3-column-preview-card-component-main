@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&family=Lexend+Deca&display=swap");
+
+//Primary
+$bright-orange: hsl(31, 77%, 52%);
+$dark-cyan: hsl(184, 100%, 22%);
+$very-dark-cyan: hsl(179, 100%, 13%);
+
+//Neutral
+$transparent-white: hsla(0, 0%, 100%, 0.75);
+$very-light-grey: hsl(0, 0%, 95%);
+
+//Fonts
+$font: "Lexend Deca", sans-serif;
+$font-headings: "Big Shoulders Display", cursive;
+
+//Border radius
+$border-radius-component: 10px;
+
+html {
+  font-weight: 400;
+  font-family: $font;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $very-light-grey;
+  color: $transparent-white;
+  overflow-x: hidden;
+}
+
+.component {
+  transform: translateY(0px);
+  animation: cardAnimation 1s;
+  display: grid;
+  max-width: 70vw;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  min-height: 50vh;
+  &__section {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2.25em 5em 2.25em 2.25em;
+    &--sedans {
+      background-color: $bright-orange;
+      border-top-left-radius: $border-radius-component;
+      border-bottom-left-radius: $border-radius-component;
+    }
+    &--suvs {
+      background-color: $dark-cyan;
+    }
+    &--luxury {
+      background-color: $very-dark-cyan;
+      border-top-right-radius: $border-radius-component;
+      border-bottom-right-radius: $border-radius-component;
+    }
+  }
+  &__icon {
+    width: min-content;
+  }
+  &__header {
+    line-height: 100%;
+    text-transform: uppercase;
+    font-family: $font-headings;
+    color: $very-light-grey;
+  }
+  &__p {
+    line-height: 130%;
+    font-size: 15px;
+  }
+  &__btn {
+    cursor: pointer;
+    font-weight: 400;
+    font-family: $font;
+    margin-top: 1em;
+    background-color: $very-light-grey;
+    border: 2px solid $very-light-grey;
+    border-radius: 50px;
+    width: fit-content;
+    padding-inline: 1.75em;
+    padding-block: 0.75em;
+    transition: all 200ms ease-out;
+    &:hover {
+      background-color: transparent;
+      color: $transparent-white;
+      transform: scale(1.05);
+    }
+    &--sedans {
+      color: $bright-orange;
+    }
+    &--suvs {
+      color: $dark-cyan;
+    }
+    &--luxury {
+      color: $very-dark-cyan;
+    }
+  }
+}
+
+@media (max-width: 1284px) {
+  .component__section {
+    &--sedans {
+      border-bottom-left-radius: 0;
+    }
+    &--suvs {
+      border-top-right-radius: $border-radius-component;
+    }
+    &--luxury {
+      grid-column: span 2;
+      border-radius: 0;
+      border-bottom-left-radius: $border-radius-component;
+      border-bottom-right-radius: $border-radius-component;
+    }
+  }
+}
+
+@media (max-width: 856px) {
+  .component__section {
+    padding: 2.25em;
+    &--sedans {
+      border-top-right-radius: $border-radius-component;
+    }
+    &--suvs {
+      border-radius: 0;
+    }
+    &--luxury {
+      grid-column: span 1;
+    }
+  }
+}
+
+@keyframes cardAnimation {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
